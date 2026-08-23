@@ -11,7 +11,7 @@
 <style>
 /* ---------------------------------------------------------------
    LOCAL FONTS — files live in fonts/ next to this file.
-   Archivo is bundled. IBM Plex Mono still loads from Google below;
+   Archivo is bundled. IBM Plex Mono still loads from Google above;
    drop ibm-plex-mono-400.woff2 and -600.woff2 into fonts/ and
    uncomment the two rules at the bottom to go fully offline.
 --------------------------------------------------------------- */
@@ -26,12 +26,12 @@
 @font-face{font-family:"Archivo";font-style:normal;font-weight:900;font-display:swap;
   src:url("fonts/archivo-900.woff2") format("woff2");}
 
-/When you have the mono files, uncomment these two:
+/* When you have the mono files, uncomment these two:
 @font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;
   src:url("fonts/ibm-plex-mono-400.woff2") format("woff2");}
 @font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:600;font-display:swap;
   src:url("fonts/ibm-plex-mono-600.woff2") format("woff2");}
-
+*/
 </style>
 <style>
 :root{
@@ -54,7 +54,6 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);f
 .wrap{max-width:1000px;margin:0 auto;padding:0 var(--gut)}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--link);outline-offset:3px}
-.rule{height:1px;background:var(--rule);border:0;margin:0}
 
 /* ---------- hero ---------- */
 .hero{padding:26px 0 0}
@@ -67,8 +66,6 @@ a{color:inherit}
   font-weight:900;font-size:clamp(40px,8.5vw,78px);line-height:1;letter-spacing:-.038em;
   margin:clamp(26px,4vw,40px) 0 0;
 }
-.hero h1 br{display:none}
-.hero h1 .lt{color:var(--ink)}
 .thesis{font-size:clamp(16px,2vw,19px);line-height:1.5;max-width:56ch;margin:16px 0 0;color:var(--ink-2)}
 .thesis b{color:var(--ink);font-weight:600}
 .titleblock{margin:30px 0 0;display:grid;grid-template-columns:1fr 1fr;column-gap:44px;border-top:1px solid var(--ink)}
@@ -89,7 +86,6 @@ a{color:inherit}
 .tab:first-child{padding-left:0}
 .tab:hover{color:var(--ink)}
 .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink);font-weight:600}
-.tab .ct{color:#9CA3AF;font-weight:400;margin-left:6px}
 .panel[hidden]{display:none}
 .panel:focus{outline:none}
 .panel:focus-visible{outline:2px solid var(--link);outline-offset:4px}
@@ -99,16 +95,12 @@ a{color:inherit}
 section{padding:clamp(46px,7vw,78px) 0 0}
 .shead{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--ink);padding-bottom:10px}
 .shead h2{font-weight:800;font-size:clamp(21px,3.2vw,29px);letter-spacing:-.025em;margin:0;line-height:1.1}
-.shead .num{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.11em}
 .shead p{margin:0 0 0 auto;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
 @media (max-width:640px){.shead{flex-wrap:wrap}.shead p{margin-left:0;width:100%}}
 .sub{color:var(--ink-2);max-width:70ch;margin:16px 0 0;font-size:15px}
 
 /* ---------- disclosure note ---------- */
-.note-box{
-  margin:22px 0 0;background:var(--wash);border-left:3px solid var(--link);
-  padding:18px 22px;
-}
+.note-box{margin:22px 0 0;background:var(--wash);border-left:3px solid var(--link);padding:18px 22px}
 .note-box h3{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--link);margin:0 0 9px;font-weight:600}
 .note-box p{margin:0 0 10px;font-size:14.5px;color:var(--ink-2);max-width:74ch;line-height:1.6}
 .note-box p:last-child{margin-bottom:0}
@@ -134,14 +126,14 @@ section{padding:clamp(46px,7vw,78px) 0 0}
 .sheets{display:grid;gap:0;border-top:1px solid var(--ink);margin-top:20px}
 .sheet{border-bottom:1px solid var(--rule)}
 .sheet[hidden]{display:none}
-.sheet-btn{width:100%;background:transparent;border:0;color:inherit;cursor:pointer;text-align:left;display:grid;grid-template-columns:58px 1fr auto;gap:18px;align-items:start;padding:18px 0;font:inherit}
+.sheet-btn{width:100%;background:transparent;border:0;color:inherit;cursor:pointer;text-align:left;display:grid;grid-template-columns:44px 1fr auto;gap:18px;align-items:start;padding:18px 0;font:inherit}
 .sheet-btn:hover h3{color:var(--link)}
-.sheet-no{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.08em;padding-top:4px}
+.sheet-no{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.08em;padding-top:5px}
 .sheet-t{min-width:0}
 .sheet-t h3{font-weight:800;font-size:clamp(18px,2.4vw,22px);line-height:1.2;margin:0;letter-spacing:-.024em;transition:color .15s}
 .sheet-t .org-line{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin:6px 0 0}
 .sheet-t .blurb{font-size:14.5px;color:var(--ink-2);margin:9px 0 0;max-width:70ch}
-.toggle{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.09em;text-transform:uppercase;display:flex;align-items:center;gap:8px;white-space:nowrap;padding-top:4px}
+.toggle{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.09em;text-transform:uppercase;display:flex;align-items:center;gap:8px;white-space:nowrap;padding-top:5px}
 .toggle .x{display:inline-block;width:18px;height:18px;border:1px solid var(--rule);position:relative;flex:0 0 auto}
 .toggle .x::before,.toggle .x::after{content:"";position:absolute;background:var(--ink);transition:transform .2s}
 .toggle .x::before{left:4px;right:4px;top:50%;height:1px;margin-top:-.5px}
@@ -161,12 +153,18 @@ section{padding:clamp(46px,7vw,78px) 0 0}
 .body li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:#9CA3AF}
 .body li b,.body p b{color:var(--ink);font-weight:600}
 
-.plate{border:1px dashed #C6CBD2;background:var(--wash);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:14px;margin:20px 0 12px}
-.plate span{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:#9CA3AF;line-height:1.7}
-.plate span.id{color:var(--muted)}
-.plate img{width:100%;height:100%;object-fit:cover;display:block}
-.plate:has(img){padding:0;border:1px solid var(--rule);aspect-ratio:auto}
-.plate figcaption{font-family:var(--mono);font-size:9.5px;line-height:1.6;letter-spacing:.04em;color:var(--muted);padding:8px 10px;border-top:1px solid var(--rule);background:var(--paper);text-align:left}
+/* ---------- image plates ---------- */
+.plate{margin:0 0 14px;border:1px solid var(--rule);background:var(--paper)}
+.plate:first-child{margin-top:20px}
+.plate img{width:100%;height:auto;display:block}
+.plate figcaption{font-family:var(--mono);font-size:9.5px;line-height:1.6;letter-spacing:.04em;color:var(--muted);padding:8px 10px;border-top:1px solid var(--rule);text-align:left}
+
+/* ---------- document links ---------- */
+.docs{margin:0 0 16px;border-top:1px solid var(--rule)}
+.docs a{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--link);text-decoration:none;line-height:1.5}
+.docs a:hover{color:var(--ink)}
+.docs a .ext{color:var(--muted);flex:0 0 auto}
 
 .mini{border-top:1px solid var(--ink);margin:0}
 .mini div{display:grid;grid-template-columns:74px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--rule);align-items:baseline}
@@ -175,7 +173,6 @@ section{padding:clamp(46px,7vw,78px) 0 0}
 .status{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;padding:2px 6px;border:1px solid currentColor;display:inline-block}
 .status.done{color:var(--muted)}
 .status.live{color:var(--link)}
-.status.wip{color:var(--wip)}
 .pad{padding-bottom:14px}
 
 /* ---------- capabilities ---------- */
@@ -183,22 +180,20 @@ section{padding:clamp(46px,7vw,78px) 0 0}
 .spec-row{display:grid;grid-template-columns:210px 1fr;gap:24px;padding:14px 0;border-bottom:1px solid var(--rule)}
 .spec-row dt{font-weight:600;font-size:14.5px;letter-spacing:-.008em}
 .spec-row dd{margin:0;font-size:14px;color:var(--ink-2)}
-.spec-row dd em{font-style:normal;color:var(--wip);font-family:var(--mono);font-size:11px;letter-spacing:.05em}
+.spec-row dd em{font-style:normal;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.05em}
 @media (max-width:700px){.spec-row{grid-template-columns:1fr;gap:5px}}
 
 /* ---------- activities ---------- */
-.acts{display:grid;grid-template-columns:1fr 1fr;gap:34px 40px;margin:28px 0 0}
-.act .plate{margin:0 0 14px;aspect-ratio:16/10}
+.acts{margin:24px 0 0;border-top:1px solid var(--ink)}
+.act{padding:18px 0;border-bottom:1px solid var(--rule)}
 .act h3{font-weight:800;font-size:17px;letter-spacing:-.018em;margin:0}
 .act .meta{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 0 0}
-.act p{font-size:14px;color:var(--ink-2);margin:9px 0 0;line-height:1.6}
-@media (max-width:760px){.acts{grid-template-columns:1fr;gap:30px}}
+.act p{font-size:14px;color:var(--ink-2);margin:9px 0 0;line-height:1.6;max-width:74ch}
 
 /* ---------- footer ---------- */
 footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:30px 0 56px}
 .foot{display:flex;flex-wrap:wrap;gap:22px 40px;align-items:flex-end;justify-content:space-between}
 .foot h2{font-weight:900;font-size:clamp(24px,4.6vw,40px);margin:0;line-height:1;letter-spacing:-.035em}
-.foot h2 br{display:none}
 .links{display:flex;flex-wrap:wrap;gap:20px}
 .links a{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-decoration:none;color:var(--link);border-bottom:1px solid var(--link);padding-bottom:2px}
 .links a:hover{color:var(--ink);border-color:var(--ink)}
@@ -214,7 +209,6 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
     <p class="eyebrow"><span>Electrical &amp; Computer Engineering + Computer Science · Duke University · Class of 2028</span></p>
     <h1>Janie Qing</h1>
 
-
     <p class="thesis">Passionate about <b>Hardware Engineering</b>, <b>Electromechanical Systems</b>, <b>Computer Architecture</b>, <b>Embedded Systems</b>, and <b>Control Systems</b>.</p>
 
     <dl class="titleblock">
@@ -226,7 +220,6 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
       <div class="tb"><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/janie-qing/" target="_blank" rel="noopener">linkedin.com/in/janie-qing</a></dd></div>
     </dl>
   </header>
-
 
   <!-- ============ TABS ============ -->
   <nav class="tabs" role="tablist" aria-label="Portfolio sections">
@@ -273,7 +266,7 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
         <div class="org">Ni Lab, Duke</div>
         <div class="role">Electromechanical Systems Engineering Intern</div>
         <div class="note">Sealed enclosures and flex sensor assembly for ultrasound hardware.</div>
-        <div class="when">Aug - Dec 2025</div>
+        <div class="when">Aug — Dec 2025</div>
       </div>
       <div class="exp-row">
         <div class="org">Chilkoti Lab, Duke</div>
@@ -296,7 +289,7 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
       <h2>Projects</h2>
       <p>Click any project to expand</p>
     </div>
-    <p class="sub">Each sheet covers what the problem actually was, what I built, and what testing changed about the design.</p>
+    <p class="sub">Each project covers what the problem actually was, what I built, and what testing changed about the design.</p>
 
     <div class="note-box">
       <h3>A note on the projects below</h3>
@@ -310,7 +303,8 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
       <button class="chip" data-f="test" aria-pressed="false">Test &amp; validation</button>
       <button class="chip" data-f="electronics" aria-pressed="false">Electronics &amp; PCB</button>
       <button class="chip" data-f="mech" aria-pressed="false">Mechanical design</button>
-      <button class="chip" data-f="software" aria-pressed="false">Software &amp; digital</button>
+      <button class="chip" data-f="digital" aria-pressed="false">Digital design</button>
+      <button class="chip" data-f="software" aria-pressed="false">Software</button>
     </div>
 
     <div class="sheets" id="sheets">
@@ -318,11 +312,11 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
       <!-- ---- 01 NASA ---- -->
       <article class="sheet" data-tags="robotics mech test">
         <button class="sheet-btn" aria-expanded="false" aria-controls="b1">
-          <span class="sheet-no">SHT 01</span>
+          <span class="sheet-no">01</span>
           <span class="sheet-t">
             <h3>Robotic unit-cell assembler</h3>
             <p class="org-line">NASA Langley Research Center · Jun — Aug 2026</p>
-            <p class="blurb">A fixture and motion sequence that lets a 6-axis arm assemble a structural voxel by itself — groundwork for building large structures in space.</p>
+            <p class="blurb">Robots already assemble voxel-to-voxel lattice structures — but each individual voxel is still built by hand. I worked on the fixture and insertion sequence that lets a 6-axis arm build the voxel itself, closing the last manual step in the chain.</p>
           </span>
           <span class="toggle"><span class="x"></span>Open</span>
         </button>
@@ -330,8 +324,8 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
           <div class="body-inner">
             <div>
               <h4>The problem</h4>
-                <p>Large space structures can be built as lattices of repeated cuboctahedral unit cells — voxels — and the robotic assembly of <em>voxel to voxel</em> is already demonstrated. The step that isn't automated is one level down: each voxel is assembled from flat panels that slot together, and a person still holds panels in place while the remaining ones are inserted.</p>
-                <p>That manual step is what caps scalability. If every voxel needs hands, the structure can only be as large as the number of voxels someone can pre-build and launch. Automating intra-voxel assembly means voxels can be built from flat-packed panels wherever they're needed — so the jig has to do the holding, the joints have to tolerate imperfect alignment, and every insertion motion should look the same so the robot program stays simple.</p>
+              <p>Large space structures can be built as lattices of repeated cuboctahedral unit cells — voxels — and the robotic assembly of <em>voxel to voxel</em> is already demonstrated. The step that isn't automated is one level down: each voxel is assembled from flat panels that slot together, and a person still holds panels in place while the remaining ones are inserted.</p>
+              <p>That manual step is what caps scalability. If every voxel needs hands, the structure can only be as large as the number of voxels someone can pre-build and launch. Automating intra-voxel assembly means voxels can be built from flat-packed panels wherever they're needed — so the jig has to do the holding, the joints have to tolerate imperfect alignment, and every insertion motion should look the same so the robot program stays simple.</p>
 
               <h4>What I did</h4>
               <ul>
@@ -352,10 +346,9 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
             </div>
             <aside>
               <figure class="plate">
-                <span class="id">images/ames_voxel_assembly.jpg</span>
-                <span>Existing voxel hardware. Credit: NASA. My work addressed the assembly of individual voxels, shown here pre-built.</span>
+                <img src="images/nasa_ames_voxel_assembly.jpg" alt="Robotic voxel-to-voxel lattice assembly">
+                <figcaption>Existing voxel-to-voxel robotic assembly. Credit: NASA. My work addressed assembly of the individual voxels, shown here already built.</figcaption>
               </figure>
-              <!-- Replace the figure above with: <figure class="plate"><img src="images/nasa-jig.jpg" alt="Jig top model"></figure> -->
               <dl class="mini">
                 <div><dt>Discipline</dt><dd>Robotics · Mechanism design</dd></div>
                 <div><dt>Tools</dt><dd>Creo, Blender, UR3e, FDM/resin printing, machine shop</dd></div>
@@ -371,7 +364,7 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
       <!-- ---- 02 Thrust stand ---- -->
       <article class="sheet" data-tags="test electronics robotics">
         <button class="sheet-btn" aria-expanded="false" aria-controls="b2">
-          <span class="sheet-no">SHT 02</span>
+          <span class="sheet-no">02</span>
           <span class="sheet-t">
             <h3>UAV propulsion test stand</h3>
             <p class="org-line">SIG Sauer · Jan — May 2026</p>
@@ -383,7 +376,7 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
           <div class="body-inner">
             <div>
               <h4>The problem</h4>
-              <p>The team was doing one-off drone builds with no shared way to compare propulsion options. This test stand allowed them to make data-driven decisions and compare/benchmark motor options. </p>
+              <p>The team was doing one-off drone builds with no shared way to compare propulsion options. This test stand let them make data-driven decisions and benchmark motor options against each other.</p>
 
               <h4>Building the test article</h4>
               <ul>
@@ -401,7 +394,8 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
             </div>
             <aside>
               <figure class="plate">
-                <img src="images/thrust_stand_wiring.png" alt="Thrust stand wiring diagram">
+                <img src="images/sig_thrust_stand_wiring.png" alt="Thrust stand wiring layout">
+                <figcaption>Test stand wiring — centralized base pass-through.</figcaption>
               </figure>
               <dl class="mini">
                 <div><dt>Discipline</dt><dd>Test &amp; validation · Electronics</dd></div>
@@ -415,14 +409,14 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
         </div>
       </article>
 
-      <!-- ---- 03 Fixtures ---- -->
+      <!-- ---- 03 SIG fixtures ---- -->
       <article class="sheet" data-tags="mech electronics test">
         <button class="sheet-btn" aria-expanded="false" aria-controls="b3">
-          <span class="sheet-no">SHT 03</span>
+          <span class="sheet-no">03</span>
           <span class="sheet-t">
             <h3>Assembly fixtures &amp; avionics enclosures</h3>
             <p class="org-line">SIG Sauer · Jan — May 2026</p>
-            <p class="blurb">A set of small shop-floor tools and enclosure designs aimed at making drone builds repeatable. </p>
+            <p class="blurb">A set of small shop-floor tools and enclosure designs aimed at making drone builds repeatable rather than improvised.</p>
           </span>
           <span class="toggle"><span class="x"></span>Open</span>
         </button>
@@ -432,7 +426,7 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
               <h4>Screw sorter and tool holder</h4>
               <ul>
                 <li>The team was using a downloaded sorter that had no inlay for their 25&nbsp;mm hardware and was too thin to hold up on the bench.</li>
-                <li>Reverse-engineered the geometry in <b>SolidWorks</b> and rebuilt it around the actual kits and workbench footprint in use.</li>
+                <li>Reverse-engineered the geometry in <b>SolidWorks</b> and rebuilt it around the actual kits and workbench footprint in use, iterating through several printed versions.</li>
               </ul>
 
               <h4>Electronics enclosure</h4>
@@ -450,8 +444,20 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
             </div>
             <aside>
               <figure class="plate">
-                <span class="id">IMG 03-A</span>
-                <span>Fixture CAD or printed part</span>
+                <img src="images/sig_screwsorter_iterations.png" alt="Successive printed iterations of the screw sorter">
+                <figcaption>Screw sorter — printed iterations.</figcaption>
+              </figure>
+              <figure class="plate">
+                <img src="images/sig_toolholder_cad.png" alt="CAD model of the tool holder">
+                <figcaption>Tool holder, SolidWorks.</figcaption>
+              </figure>
+              <figure class="plate">
+                <img src="images/sig_electronics_enclosure_cad.png" alt="CAD model of the avionics enclosure">
+                <figcaption>Avionics enclosure with swept antenna routing.</figcaption>
+              </figure>
+              <figure class="plate">
+                <img src="images/sig_pcb_modeling_cad.png" alt="Board models placed in the enclosure assembly">
+                <figcaption>Board models in the assembly for clearance checks.</figcaption>
               </figure>
               <dl class="mini">
                 <div><dt>Discipline</dt><dd>Mechanical · Electronics</dd></div>
@@ -465,14 +471,14 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
         </div>
       </article>
 
-      <!-- ---- 04 Lumius Imaging ---- -->
+      <!-- ---- 04 Lumius ---- -->
       <article class="sheet" data-tags="mech electronics test">
         <button class="sheet-btn" aria-expanded="false" aria-controls="b4">
-          <span class="sheet-no">SHT 04</span>
+          <span class="sheet-no">04</span>
           <span class="sheet-t">
             <h3>Fluid-filled probe enclosure</h3>
-            <p class="org-line">Lumius Imaging (Y Combinator P26) &middot; Jan &mdash; Apr 2026</p>
-            <p class="blurb">The tip of a 3D ultrasound probe has to hold fluid against a patient&rsquo;s skin, stay optically clear, let a slit slide around inside it, and never leak. Those requirements fight each other. I designed the enclosure that resolves them.</p>
+            <p class="org-line">Lumius Imaging (Y Combinator P26) · Jan — May 2026</p>
+            <p class="blurb">The tip of a 3D ultrasound probe has to hold fluid against a patient's skin, stay optically clear, let a slit slide around inside it, and never leak. Those requirements fight each other. I designed the enclosure that resolves them.</p>
           </span>
           <span class="toggle"><span class="x"></span>Open</span>
         </button>
@@ -480,48 +486,48 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
           <div class="body-inner">
             <div>
               <h4>The system</h4>
-              <p>Lumius is commercializing <b>3D diffractive acoustic tomography</b> &mdash; a method that gets volumetric imaging out of an off-the-shelf linear array transducer by diffracting the acoustic field through a single adjustable slit. It sidesteps the usual matrix-array tradeoff, where shrinking elements to densify the sampled field of view costs you detection sensitivity. The probe runs two synchronized modes: photoacoustic, using multi-wavelength laser illumination, and ultrasound, using a plane wave diffracted by the slit.</p>
+              <p>Lumius is commercializing <b>3D diffractive acoustic tomography</b> — a method that gets volumetric imaging out of an off-the-shelf linear array transducer by diffracting the acoustic field through a single adjustable slit. It sidesteps the usual matrix-array tradeoff, where shrinking elements to densify the sampled field of view costs you detection sensitivity. The probe runs two synchronized modes: photoacoustic, using multi-wavelength laser illumination, and ultrasound, using a plane wave diffracted by the slit.</p>
 
               <h4>Why the enclosure is hard</h4>
               <ul>
-                <li><b>Acoustic coupling</b> &mdash; a trapped air bubble blocks ultrasound outright, so the geometry has to evacuate air, not just contain fluid.</li>
-                <li><b>Leak prevention</b> &mdash; escaping fluid means either wet electronics or fluid on a patient.</li>
-                <li><b>Biocompatibility</b> &mdash; the face touching skin has to be a medical-grade material.</li>
-                <li><b>Optical transparency</b> &mdash; the photoacoustic mode fires lasers through the same window the ultrasound passes through.</li>
-                <li><b>A moving part inside the seal</b> &mdash; the diffractive slit has to keep sliding on its track while submerged, which rules out most of the easy sealing answers.</li>
+                <li><b>Acoustic coupling</b> — a trapped air bubble blocks ultrasound outright, so the geometry has to evacuate air, not just contain fluid.</li>
+                <li><b>Leak prevention</b> — escaping fluid means either wet electronics or fluid on a patient.</li>
+                <li><b>Biocompatibility</b> — the face touching skin has to be a medical-grade material.</li>
+                <li><b>Optical transparency</b> — the photoacoustic mode fires lasers through the same window the ultrasound passes through.</li>
+                <li><b>A moving part inside the seal</b> — the diffractive slit has to keep sliding on its track while submerged, which rules out most of the easy sealing answers.</li>
               </ul>
 
               <h4>What I designed</h4>
               <ul>
                 <li>Modeled the enclosure in <b>Fusion 360</b>, importing McMaster-Carr models of the actual fasteners and hardware so fits were checked against real parts rather than nominal dimensions.</li>
-                <li>Worked out the internal architecture: a recessed external pocket for a <b>Xeryon XLA-1-50</b> piezo actuator, a wall thinned to 1.0&nbsp;mm across the actuator&rsquo;s travel to maximize magnetic flux without losing stiffness, a longitudinal sled track for the slit mount, and internal bosses carrying press-fit 3&nbsp;mm stainless guide rails to keep the sled stable.</li>
-                <li>Tapered the patient-contact face down to a <b>0.5&nbsp;mm acoustic window</b> &mdash; thin enough to pass sound, thick enough to survive handling &mdash; and filleted external vertical edges 5&nbsp;mm for grip.</li>
+                <li>Worked out the internal architecture: a recessed external pocket for the piezo actuator, a thinned wall across the actuator's travel to maximize magnetic flux without losing stiffness, a longitudinal sled track for the slit mount, and internal bosses carrying press-fit stainless guide rails to keep the sled stable.</li>
+                <li>Tapered the patient-contact face down to a thin acoustic window — thin enough to pass sound, thick enough to survive handling — and filleted external vertical edges for grip.</li>
                 <li>Evaluated two ways to drive the slit through a sealed wall: <b>magnetic coupling</b> and a <b>rubber accordion bellows</b>. Both were confirmed viable; the magnetic approach kept losing consistent contact across the intervening membrane, which became the open issue to solve.</li>
                 <li>Consulted Duke acoustics faculty on whether candidate geometries would hold acoustic coupling before committing to one.</li>
               </ul>
 
-              <h4>The hygiene problem, and the business answer</h4>
-              <p>Between patients the probe has to be cleaned, but the fluid volume is part of the acoustic path &mdash; you can&rsquo;t drain and refill it in a clinic. I proposed a <b>removable bottom cartridge</b>: the patient-contact face becomes a replaceable consumable, so the fluid is never changed and hygiene is handled by swapping a part. That doubles as a razor-and-blades revenue path &mdash; sell the probe once, sell cartridges repeatedly. Design review also moved the tilt to the side and added a control button for one-handed operation.</p>
+              <h4>The hygiene problem</h4>
+              <p>Between patients the probe has to be cleaned, but the fluid volume is part of the acoustic path — you can't drain and refill it in a clinic. I proposed a <b>removable bottom cartridge</b>: the patient-contact face becomes a replaceable consumable, so the fluid is never changed and hygiene is handled by swapping a part. Design review also moved the tilt to the side and added a control button for one-handed operation.</p>
 
-              <h4>Side investigation &mdash; benchmarking text-to-CAD tools</h4>
+              <h4>Side investigation — benchmarking text-to-CAD tools</h4>
               <ul>
                 <li>Evaluated <b>Zoo</b>, <b>Adam</b>, and <b>Aurorin</b> against an escalating prompt ladder to find where generative CAD stops being useful.</li>
-                <li>The ladder: a 50&nbsp;mm cube with a centered through-hole and fillets (~5 min on Zoo&rsquo;s fast mode) &rarr; a 100&nbsp;&times;&nbsp;100&nbsp;&times;&nbsp;10&nbsp;mm plate with four M4 clearance holes &rarr; a plate with a raised boss carrying three M3 <b>tapped</b> holes on a 20&nbsp;mm bolt circle, exported as solid B-Rep STEP &rarr; the full parametric probe enclosure.</li>
-                <li>Zoo behaved like a real CAD environment &mdash; manual editing after generation, a code-level representation of features, broad export options &mdash; and took about 20 minutes on the full enclosure prompt. Adam was faster to learn but offered no manual editing and exported only STEP and SCAD; it could not handle the enclosure prompt at all.</li>
+                <li>The ladder: a 50&nbsp;mm cube with a centered through-hole and fillets (~5 min on Zoo's fast mode) → a 100&nbsp;×&nbsp;100&nbsp;×&nbsp;10&nbsp;mm plate with four M4 clearance holes → a plate with a raised boss carrying three M3 <b>tapped</b> holes on a 20&nbsp;mm bolt circle, exported as solid B-Rep STEP → a full parametric probe enclosure.</li>
+                <li>Zoo behaved like a real CAD environment — manual editing after generation, a code-level representation of features, broad export options — and took about 20 minutes on the full enclosure prompt. Adam was faster to learn but offered no manual editing and exported only STEP and SCAD; it could not handle the enclosure prompt at all.</li>
                 <li>The breaking point across every tool was <b>threaded and patterned features</b>. Prismatic geometry generated fine; tapped holes on a bolt circle did not.</li>
               </ul>
             </div>
             <aside>
               <figure class="plate">
-                <span class="id">IMG 04-A</span>
-                <span>Enclosure CAD or probe assembly</span>
+                <img src="images/lumius_imaging_design_ideas.jpg" alt="Sketched enclosure design concepts">
+                <figcaption>Early enclosure concepts.</figcaption>
               </figure>
               <figure class="plate">
-                <span class="id">IMG 04-B</span>
-                <span>Sled track / sealing concept</span>
+                <img src="images/lumiusimaging_probedesign.png" alt="Probe enclosure CAD model">
+                <figcaption>Probe enclosure, Fusion 360.</figcaption>
               </figure>
               <dl class="mini">
-                <div><dt>Discipline</dt><dd>Mechanical design &middot; Sealing &middot; Medical device</dd></div>
+                <div><dt>Discipline</dt><dd>Mechanical design · Sealing · Medical device</dd></div>
                 <div><dt>Tools</dt><dd>Fusion 360, McMaster-Carr models, Zoo / Adam / Aurorin</dd></div>
                 <div><dt>Role</dt><dd>Engineering intern — enclosure design</dd></div>
                 <div><dt>Status</dt><dd><span class="status live">Active development</span></dd></div>
@@ -532,37 +538,61 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
         </div>
       </article>
 
-      <!-- ---- 05 Ni Lab ---- -->
-      <article class="sheet" data-tags="mech electronics">
+      <!-- ---- 05 CPU ---- -->
+      <article class="sheet" data-tags="digital software">
         <button class="sheet-btn" aria-expanded="false" aria-controls="b5">
-          <span class="sheet-no">SHT 05</span>
+          <span class="sheet-no">05</span>
           <span class="sheet-t">
-            <h3>Flexible sensor assembly</h3>
-            <p class="org-line">Ni Lab, Duke University · Aug 2025 — Jun 2026</p>
-            <p class="blurb">Precision build work behind the lab’s ultrasound imaging research — flexible sensor arrays on serpentine layouts, assembled by hand under magnification.</p>
+            <h3>Single-cycle CPU, built from gates</h3>
+            <p class="org-line">CS 250 Computer Architecture · Duke University</p>
+            <p class="blurb">A working processor assembled in Logisim from the register up — single register to register file, program counter, control unit, then the full datapath wired together.</p>
           </span>
           <span class="toggle"><span class="x"></span>Open</span>
         </button>
         <div class="body" id="b5" hidden>
           <div class="body-inner">
             <div>
-              <h4>What I did</h4>
+              <h4>The approach</h4>
+              <p>The processor was built bottom-up rather than dropped in as a block diagram. Each level was constructed and tested on its own before becoming a component in the next one, so a fault at the top could always be traced back through levels that had already been verified.</p>
+
+              <h4>What I built</h4>
               <ul>
-                <li>Assembled flexible sensor systems built on <b>serpentine PCB layouts</b> — micro-soldering and precision handling under magnification, where one bridged joint scraps the part.</li>
-                <li>Supported mechanical prototyping for the lab’s ultrasound imaging platform, including structural interfaces that hold stiffness while allowing internal motion.</li>
+                <li><b>Single register</b> — the base storage element, with write-enable control.</li>
+                <li><b>Register file</b> — an addressable array of those registers, with decoders selecting read and write ports so the datapath can pull operands and write a result in the same cycle.</li>
+                <li><b>Program counter</b> — sequential address generation, with both the increment path and the branch/jump load path.</li>
+                <li><b>Control unit</b> — instruction decode driving the control signals that steer the datapath: what the ALU does, what the muxes select, what gets written and when.</li>
+                <li><b>Full datapath</b> — the components integrated into a processor that fetches, decodes, executes, and writes back.</li>
               </ul>
-              <p>This research fed directly into the probe enclosure work on <b>SHT 04</b>.</p>
+
+              <h4>Why it's here</h4>
+              <p>Computer architecture is one of the areas I most want to work in, and this is the project where the abstraction actually came apart — instruction, control signal, mux select, gate. Building the control unit in particular made clear how much of a processor is just deciding what to steer where.</p>
             </div>
             <aside>
               <figure class="plate">
-                <span class="id">IMG 05-A</span>
-                <span>Enclosure CAD or flex sensor assembly</span>
+                <img src="images/cpu_main.png" alt="Full CPU datapath in Logisim">
+                <figcaption>Full datapath.</figcaption>
+              </figure>
+              <figure class="plate">
+                <img src="images/cpu_control_unit.png" alt="Control unit schematic">
+                <figcaption>Control unit — instruction decode to control signals.</figcaption>
+              </figure>
+              <figure class="plate">
+                <img src="images/cpu_register_file.png" alt="Register file schematic">
+                <figcaption>Register file with read/write port decoding.</figcaption>
+              </figure>
+              <figure class="plate">
+                <img src="images/cpu_program_counter.png" alt="Program counter schematic">
+                <figcaption>Program counter.</figcaption>
+              </figure>
+              <figure class="plate">
+                <img src="images/cpu_single_register.png" alt="Single register schematic">
+                <figcaption>Single register — the base element.</figcaption>
               </figure>
               <dl class="mini">
-                <div><dt>Discipline</dt><dd>Mechanical · Precision assembly</dd></div>
-                <div><dt>Tools</dt><dd>SolidWorks, Altium, micro-soldering, 3D printing</dd></div>
-                <div><dt>Role</dt><dd>Engineering intern</dd></div>
-                <div><dt>Status</dt><dd><span class="status done">Ongoing lab hardware</span></dd></div>
+                <div><dt>Discipline</dt><dd>Computer architecture · Digital logic</dd></div>
+                <div><dt>Tools</dt><dd>Logisim</dd></div>
+                <div><dt>Role</dt><dd>Coursework</dd></div>
+                <div><dt>Status</dt><dd><span class="status done">Complete</span></dd></div>
               </dl>
             </aside>
           </div>
@@ -570,57 +600,18 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
         </div>
       </article>
 
-      <!-- ---- 06 Combat robotics ---- -->
-      <article class="sheet" data-tags="robotics mech electronics">
-        <button class="sheet-btn" aria-expanded="false" aria-controls="b6">
-          <span class="sheet-no">SHT 06</span>
-          <span class="sheet-t">
-            <h3>1&nbsp;lb modular combat robot</h3>
-            <p class="org-line">Duke Combat Robotics · Mechanical Lead · 2026</p>
-            <p class="blurb">Led mechanical integration on a one-pound modular platform, where the whole design problem is packaging: everything has to fit, survive impact, and still come apart between matches.</p>
-          </span>
-          <span class="toggle"><span class="x"></span>Open</span>
-        </button>
-        <div class="body" id="b6" hidden>
-          <div class="body-inner">
-            <div>
-              <h4>What I did</h4>
-              <ul>
-                <li>Owned initial <b>chassis layout and actuator mounting</b> for a modular one-pound platform.</li>
-                <li>Developed the electromechanical packaging strategy — structured wire routing and component placement so harnesses don't become the failure mode on impact.</li>
-                <li>Led a 4-engineer subteam and coordinated integration across the mechanical, electrical, and controls groups to keep subsystem testing unblocked.</li>
-                <li>Designed and tested assemblies integrating actuators, sensors, wiring harnesses, and embedded electronics as one package rather than as separate deliverables.</li>
-              </ul>
-            </div>
-            <aside>
-              <figure class="plate">
-                <span class="id">IMG 06-A</span>
-                <span>Chassis CAD or assembled bot</span>
-              </figure>
-              <dl class="mini">
-                <div><dt>Discipline</dt><dd>Robotics · Systems integration</dd></div>
-                <div><dt>Tools</dt><dd>SolidWorks, 3D printing, harness fabrication</dd></div>
-                <div><dt>Role</dt><dd>Mechanical lead, 4-person subteam</dd></div>
-                <div><dt>Status</dt><dd><span class="status done">Built</span></dd></div>
-              </dl>
-            </aside>
-          </div>
-          <div class="pad"></div>
-        </div>
-      </article>
-
-      <!-- ---- 07 Line robot ---- -->
+      <!-- ---- 06 Line robot ---- -->
       <article class="sheet" data-tags="robotics software electronics">
-        <button class="sheet-btn" aria-expanded="false" aria-controls="b7">
-          <span class="sheet-no">SHT 07</span>
+        <button class="sheet-btn" aria-expanded="false" aria-controls="b6">
+          <span class="sheet-no">06</span>
           <span class="sheet-t">
             <h3>Multi-agent line-sensing robot</h3>
-            <p class="org-line">Duke University · Jan — May 2025</p>
+            <p class="org-line">ECE 110 · Duke University · Jan — May 2025</p>
             <p class="blurb">An Arduino robot that tracks a line to ±2&nbsp;mm and stays in sync with four others over a wireless link.</p>
           </span>
           <span class="toggle"><span class="x"></span>Open</span>
         </button>
-        <div class="body" id="b7" hidden>
+        <div class="body" id="b6" hidden>
           <div class="body-inner">
             <div>
               <h4>Tracking</h4>
@@ -636,8 +627,12 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
             </div>
             <aside>
               <figure class="plate">
-                <span class="id">IMG 07-A</span>
-                <span>Robot on course or wiring photo</span>
+                <img src="images/ece_110_robot.png" alt="Line-sensing robot with sensor array and drive motors">
+                <figcaption>The robot — QTI sensor array and drive train.</figcaption>
+              </figure>
+              <figure class="plate">
+                <img src="images/ece_110_group.png" alt="Team with the completed robots">
+                <figcaption>Multi-agent coordination run.</figcaption>
               </figure>
               <dl class="mini">
                 <div><dt>Discipline</dt><dd>Robotics · Embedded</dd></div>
@@ -651,13 +646,52 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
         </div>
       </article>
 
+      <!-- ---- 07 Chilkoti ---- -->
+      <article class="sheet" data-tags="software">
+        <button class="sheet-btn" aria-expanded="false" aria-controls="b7">
+          <span class="sheet-no">07</span>
+          <span class="sheet-t">
+            <h3>Assay image analysis pipeline</h3>
+            <p class="org-line">Chilkoti Lab, Duke University · Apr — Jun 2025</p>
+            <p class="blurb">Python pipeline that pulls quantitative signal out of virus assay images, validated against the commercial tool it was meant to replace.</p>
+          </span>
+          <span class="toggle"><span class="x"></span>Open</span>
+        </button>
+        <div class="body" id="b7" hidden>
+          <div class="body-inner">
+            <div>
+              <h4>What I did</h4>
+              <ul>
+                <li>Built an image analysis pipeline for virus assay readouts supporting development of rapid diagnostics for rural settings.</li>
+                <li>Automated fluorescent signal extraction — spot detection and clustering, per-spot foreground and background measurement, and cluster-level averaged signal.</li>
+                <li>Exported results to Excel and wrote scripts to analyze the extracted datapoints and generate plots.</li>
+                <li>Wrote a side-by-side validation view rendering each block twice — pipeline output against <b>GenePix</b> reference results — showing cluster ID, average signal, per-spot values, and the detected spot position on the image itself. That made disagreement between the two visible instead of hypothetical.</li>
+              </ul>
+            </div>
+            <aside>
+              <figure class="plate">
+                <img src="images/chilkotilab_particle_identification.png" alt="Detected spots identified and labeled on an assay image">
+                <figcaption>Spot detection output with per-cluster labeling.</figcaption>
+              </figure>
+              <dl class="mini">
+                <div><dt>Discipline</dt><dd>Software · Image processing</dd></div>
+                <div><dt>Tools</dt><dd>Python, NumPy, Jupyter, Excel export</dd></div>
+                <div><dt>Role</dt><dd>Engineering intern</dd></div>
+                <div><dt>Status</dt><dd><span class="status done">Complete</span></dd></div>
+              </dl>
+            </aside>
+          </div>
+          <div class="pad"></div>
+        </div>
+      </article>
+
       <!-- ---- 08 CPAP ---- -->
       <article class="sheet" data-tags="electronics mech">
         <button class="sheet-btn" aria-expanded="false" aria-controls="b8">
-          <span class="sheet-no">SHT 08</span>
+          <span class="sheet-no">08</span>
           <span class="sheet-t">
             <h3>Bubble CPAP liquid-level alert</h3>
-            <p class="org-line">Client project — Makerere University, Uganda · Sep — Dec 2024</p>
+            <p class="org-line">EGR 101 · Client: Makerere University, Uganda · Sep — Dec 2024</p>
             <p class="blurb">A water-level alarm for neonatal bubble CPAP, designed under a hard constraint: it has to be built and repaired with parts available locally in Uganda.</p>
           </span>
           <span class="toggle"><span class="x"></span>Open</span>
@@ -677,9 +711,16 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
             </div>
             <aside>
               <figure class="plate">
-                <span class="id">IMG 08-A</span>
-                <span>Device prototype or circuit</span>
+                <img src="images/bcpap_stand_photo.png" alt="Assembled bubble CPAP alert device on its stand">
+                <figcaption>Assembled prototype.</figcaption>
               </figure>
+              <figure class="plate">
+                <img src="images/bcpap_circuit_schematic.jpg" alt="Level-sensing circuit schematic">
+                <figcaption>Level-sensing circuit.</figcaption>
+              </figure>
+              <div class="docs">
+                <a href="images/bcpap_finalPresentationEGR101.pdf" target="_blank" rel="noopener"><span class="ext">PDF</span><span>Final project presentation</span></a>
+              </div>
               <dl class="mini">
                 <div><dt>Discipline</dt><dd>Electronics · Design for context</dd></div>
                 <div><dt>Tools</dt><dd>Arduino, custom circuit, CAD, woodworking</dd></div>
@@ -695,7 +736,7 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
       <!-- ---- 09 Wind turbine ---- -->
       <article class="sheet" data-tags="mech test">
         <button class="sheet-btn" aria-expanded="false" aria-controls="b9">
-          <span class="sheet-no">SHT 09</span>
+          <span class="sheet-no">09</span>
           <span class="sheet-t">
             <h3>High-efficiency wind turbine</h3>
             <p class="org-line">KidWind World Championship · Jan — May 2024</p>
@@ -718,93 +759,21 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
             </div>
             <aside>
               <figure class="plate">
-                <span class="id">IMG 09-A</span>
-                <span>Blade set or wind tunnel test</span>
+                <img src="images/windturbine_tunnel_testing.png" alt="Turbine under test in the custom-built wind tunnel">
+                <figcaption>Wind tunnel testing.</figcaption>
               </figure>
+              <figure class="plate">
+                <img src="images/windturbine_teampic.png" alt="Team at the KidWind World Championship">
+                <figcaption>KidWind World Championship, Minneapolis.</figcaption>
+              </figure>
+              <div class="docs">
+                <a href="images/windturbine_poster.pdf" target="_blank" rel="noopener"><span class="ext">PDF</span><span>Competition technical poster</span></a>
+              </div>
               <dl class="mini">
                 <div><dt>Discipline</dt><dd>Mechanical · Test</dd></div>
                 <div><dt>Tools</dt><dd>CAD, airfoil simulation, wind tunnel, rapid prototyping</dd></div>
                 <div><dt>Role</dt><dd>Test &amp; documentation lead</dd></div>
                 <div><dt>Status</dt><dd><span class="status done">1st place — world</span></dd></div>
-              </dl>
-            </aside>
-          </div>
-          <div class="pad"></div>
-        </div>
-      </article>
-
-      <!-- ---- 10 Chilkoti ---- -->
-      <article class="sheet" data-tags="software">
-        <button class="sheet-btn" aria-expanded="false" aria-controls="b10">
-          <span class="sheet-no">SHT 10</span>
-          <span class="sheet-t">
-            <h3>Assay image analysis pipeline</h3>
-            <p class="org-line">Chilkoti Lab, Duke University · Apr — Jun 2025</p>
-            <p class="blurb">Python pipeline that pulls quantitative signal out of virus assay images, validated against the commercial tool it was meant to replace.</p>
-          </span>
-          <span class="toggle"><span class="x"></span>Open</span>
-        </button>
-        <div class="body" id="b10" hidden>
-          <div class="body-inner">
-            <div>
-              <h4>What I did</h4>
-              <ul>
-                <li>Built an image analysis pipeline for virus assay readouts supporting development of rapid diagnostics for rural settings.</li>
-                <li>Automated fluorescent signal extraction — spot detection and clustering, per-spot foreground and background measurement, and cluster-level averaged signal.</li>
-                <li>Exported results to Excel and wrote scripts to analyze the extracted datapoints and generate plots.</li>
-                <li>Wrote a side-by-side validation view rendering each block twice — pipeline output against <b>GenePix</b> reference results — showing cluster ID, average signal, per-spot values, and the detected spot position on the image itself. That made disagreement between the two visible instead of hypothetical.</li>
-              </ul>
-            </div>
-            <aside>
-              <figure class="plate">
-                <span class="id">IMG 10-A</span>
-                <span>Pipeline output or validation plot</span>
-              </figure>
-              <dl class="mini">
-                <div><dt>Discipline</dt><dd>Software · Image processing</dd></div>
-                <div><dt>Tools</dt><dd>Python, NumPy, Jupyter, Excel export</dd></div>
-                <div><dt>Role</dt><dd>Developer</dd></div>
-                <div><dt>Status</dt><dd><span class="status done">Complete</span></dd></div>
-              </dl>
-            </aside>
-          </div>
-          <div class="pad"></div>
-        </div>
-      </article>
-
-      <!-- ---- 11 FPGA ---- -->
-      <article class="sheet" data-tags="software electronics">
-        <button class="sheet-btn" aria-expanded="false" aria-controls="b11">
-          <span class="sheet-no">SHT 11</span>
-          <span class="sheet-t">
-            <h3>Pipelined FIR filter in SystemVerilog</h3>
-            <p class="org-line">Personal project · In progress</p>
-            <p class="blurb">A fixed-point FIR filter taken from a Python golden model through RTL, a self-checking testbench, and timing closure on an Artix-7.</p>
-          </span>
-          <span class="toggle"><span class="x"></span>Open</span>
-        </button>
-        <div class="body" id="b11" hidden>
-          <div class="body-inner">
-            <div>
-              <h4>Plan</h4>
-              <ul>
-                <li><b>Golden model</b> — filter designed and simulated in Python with SciPy/NumPy to establish expected output before any RTL exists.</li>
-                <li><b>RTL</b> — pipelined FIR in SystemVerilog using <b>Q1.15</b> fixed-point arithmetic, with explicit handling of rounding and saturation.</li>
-                <li><b>Verification</b> — self-checking testbench comparing RTL output against the golden model across the input set, so a regression fails loudly.</li>
-                <li><b>Implementation</b> — synthesis and timing closure in <b>Vivado</b> targeting Artix-7, reporting achieved Fmax and resource utilization.</li>
-              </ul>
-              <p style="color:var(--wip);font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;line-height:1.65">This sheet describes work underway, not work finished. It will be updated with results and a repository link once the design closes timing.</p>
-            </div>
-            <aside>
-              <figure class="plate">
-                <span class="id">IMG 11-A</span>
-                <span>Waveform or utilization report</span>
-              </figure>
-              <dl class="mini">
-                <div><dt>Discipline</dt><dd>Digital design · FPGA</dd></div>
-                <div><dt>Tools</dt><dd>SystemVerilog, Vivado, Python (SciPy/NumPy)</dd></div>
-                <div><dt>Target</dt><dd>Xilinx Artix-7</dd></div>
-                <div><dt>Status</dt><dd><span class="status wip">In progress</span></dd></div>
               </dl>
             </aside>
           </div>
@@ -830,14 +799,13 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
       <div class="spec-row"><dt>Electronics</dt><dd>Altium Designer · PCBA build, bring-up and debug · hand and micro-soldering · SMD rework · wiring harnesses · power distribution · flexible/serpentine PCB assembly</dd></div>
       <div class="spec-row"><dt>Test &amp; instrumentation</dt><dd>Test fixture and jig design · thrust stand characterization · protocol writing · oscilloscope · multimeter · logic analyzer · fault isolation</dd></div>
       <div class="spec-row"><dt>Embedded &amp; robotics</dt><dd>Arduino / embedded C++ · UR3e manipulation and waypoint programming · ESC and flight controller integration · XBee · I²C · BLE · ROS</dd></div>
+      <div class="spec-row"><dt>Digital design</dt><dd>Digital logic and datapath design · register files, control units, single-cycle CPU in Logisim &nbsp;<em>— see project 05</em></dd></div>
       <div class="spec-row"><dt>Software</dt><dd>Python (NumPy, SciPy) · C++ · Java · MATLAB · Git</dd></div>
-      <div class="spec-row"><dt>Digital design</dt><dd>SystemVerilog · Vivado · fixed-point arithmetic &nbsp;<em>— learning, see SHT 11</em></dd></div>
       <div class="spec-row"><dt>Fabrication</dt><dd>Thread tapping · helicoil installation · hand fitting and filing · machine shop workflow · tolerance troubleshooting</dd></div>
     </dl>
 
     <p class="sub" style="margin-top:26px">Coursework: Computer Architecture · Fundamentals of Circuits · Data Structures &amp; Algorithms · Solid Mechanics · Dynamics · Physics. Also studied the Ethics and Philosophy of Artificial Intelligence at New College, University of Oxford.</p>
   </section>
-
 
   </div>
 
@@ -848,48 +816,41 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
       <h2>Extracurriculars</h2>
       <p>Clubs, honors, and everything else</p>
     </div>
-    <p class="sub">Outside of work...</p>
+    <p class="sub">Outside of work and lab.</p>
 
     <div class="acts">
       <div class="act">
-        <figure class="plate"><span class="id">IMG A-1</span><span>Photo</span></figure>
         <h3>Angier B. Duke Scholarship</h3>
-        <p class="meta">Full-ride merit scholarship &middot; 2024 &mdash; 2028</p>
-        <p>Duke&rsquo;s flagship merit award, selected from the applicant pool through a finalist interview process. The scholarship funds tuition in full and supports a cohort of scholars through shared programming and a funded summer study experience abroad at the University of Oxford.</p>
+        <p class="meta">Full-ride merit scholarship · 2024 — 2028</p>
+        <p>Duke's flagship merit award, selected from the applicant pool through a finalist interview process. The scholarship funds tuition in full and supports a cohort of scholars through shared programming and a funded summer study experience abroad at the University of Oxford.</p>
       </div>
       <div class="act">
-        <figure class="plate"><span class="id">IMG A-2</span><span>Photo</span></figure>
         <h3>Ethics &amp; Philosophy of AI</h3>
-        <p class="meta">University of Oxford, New College &middot; Summer</p>
+        <p class="meta">University of Oxford, New College · Summer</p>
         <p>Coursework at New College on the ethics and philosophy of artificial intelligence, taken through the Angier B. Duke summer program. A useful counterweight to a curriculum that otherwise asks only whether something can be built.</p>
       </div>
       <div class="act">
-        <figure class="plate"><span class="id">IMG A-3</span><span>Photo</span></figure>
         <h3>Asian Student Association</h3>
-        <p class="meta">Executive Team &mdash; Community &amp; Outreach &middot; 2024 &mdash; Present</p>
-        <p>Plan and run community-building events and programming reaching 300+ people, focused on cultural awareness and making the organization easy to walk into for students who don&rsquo;t already know anyone in it.</p>
+        <p class="meta">Executive Team — Community &amp; Outreach · 2024 — Present</p>
+        <p>Plan and run community-building events and programming reaching 300+ people, focused on cultural awareness and making the organization easy to walk into for students who don't already know anyone in it.</p>
       </div>
       <div class="act">
-        <figure class="plate"><span class="id">IMG A-4</span><span>Photo</span></figure>
         <h3>180 Degrees Consulting</h3>
-        <p class="meta">Consultant &middot; Client: IRx Reminder</p>
+        <p class="meta">Consultant · Client: IRx Reminder</p>
         <p>Pro bono strategy consulting for social-impact organizations. Worked on an engagement with IRx Reminder, a medication-adherence technology company.</p>
       </div>
       <div class="act">
-        <figure class="plate"><span class="id">IMG A-5</span><span>Photo</span></figure>
         <h3>Duke Catalyst</h3>
         <p class="meta">Pre-professional technology society</p>
         <p>A pre-professional community for students heading into technology, built around recruiting preparation, technical skill-building, and connecting members with alumni working in the industry.</p>
       </div>
       <div class="act">
-        <figure class="plate"><span class="id">IMG A-6</span><span>Photo</span></figure>
         <h3>Society of Women Engineers</h3>
-        <p class="meta">Member &middot; Duke section</p>
-        <p>Duke&rsquo;s SWE section &mdash; professional development, outreach, and a network of women across every engineering discipline on campus.</p>
+        <p class="meta">Member · Duke section</p>
+        <p>Duke's SWE section — professional development, outreach, and a network of women across every engineering discipline on campus.</p>
       </div>
       <div class="act">
-        <figure class="plate"><span class="id">IMG A-7</span><span>Photo</span></figure>
-        <h3>Duke Women&rsquo;s Club Soccer</h3>
+        <h3>Duke Women's Club Soccer</h3>
         <p class="meta">Player</p>
         <p>Club-level soccer alongside a dual-degree course load. Practices, travel, and a standing commitment that has to survive midterms.</p>
       </div>
@@ -928,8 +889,7 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
       document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
     });
     if (push) {
-      var id = tab.getAttribute('aria-controls');
-      history.replaceState(null, '', '#' + hashes[id]);
+      history.replaceState(null, '', '#' + hashes[tab.getAttribute('aria-controls')]);
     }
   }
 
@@ -951,7 +911,7 @@ footer{margin-top:clamp(52px,8vw,86px);border-top:2px solid var(--ink);padding:3
   })[0];
   if (match) select(match, false);
 
-  // expand / collapse sheets
+  // expand / collapse projects
   document.querySelectorAll('.sheet-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
       var open = btn.getAttribute('aria-expanded') === 'true';
