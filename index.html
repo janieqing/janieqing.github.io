@@ -238,7 +238,7 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
               <h4>What I'm working on</h4>
               <ul>
                 <li>Executing systems-engineering test procedures, stands, and systems for Atlas.</li>
-                <li><b>Thermal characterization of a gripper hand</b> — wired 16 thermocouples onto the hand, then wrote a program to cycle it through positions while sweeping current to load the actuators and log thermal response.</li>
+                <li><b>Thermal characterization of a gripper hand</b> — wired 16 thermocouples onto the hand, then wrote a program to cycle it through positions while sweeping <b>d-axis current</b> to load the actuators thermally without producing torque or motion, logging the thermal response.</li>
                 <li><b>Reverse-engineered a magnetic powder-brake tension controller</b> for programmatic control. Traced encoder and MCU signals and characterized its MOSFET PWM drive on an oscilloscope so it could be driven from an external controller.</li>
               </ul>
               <p>Currently in progress.</p>
@@ -260,20 +260,26 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
           <span class="row-t">
             <h3>NASA Langley Research Center</h3>
             <p class="org-line">Hardware Engineering Intern (OSTEM), Space Robotics · Hampton, VA · May — Jul 2026</p>
-            <p class="blurb">End-effector rebuilds and an autonomous panel-joining sequence for in-space assembly.</p>
+            <p class="blurb">Robotic end-effector rebuilds for the Tall Lunar Tower, and a UR3e assembler that joins six panels into a cuboctahedron voxel.</p>
           </span>
           <span class="toggle"><span class="x"></span>Open</span>
         </button>
         <div class="body" id="e2" hidden>
           <div class="body-inner">
             <div>
+              <p>Both projects sat under <b>ARC-LSI</b> (Autonomous Robotic Construction &mdash; Lunar Surface Infrastructure), which aims at one unified robotic system that can build lunar surface structures autonomously. The end-effector work was for <b>TLT</b> (Tall Lunar Tower).</p>
+
               <div class="proj">
-                <h5>Robotic end-effector rebuild</h5>
+                <h5>TLT end-effector rebuild</h5>
+                <p>Disassembled and rebuilt two robotic end-effectors, swapping 3D-printed components for machined metal to improve thermal vacuum durability. Tolerances did not carry over, so most parts needed hand adjustment to fit.</p>
                 <ul>
-                  <li>Rebuilt two robotic end-effectors, replacing 3D-printed parts with metal ones I altered myself — drilling, tapping, filing.</li>
-                  <li>Improved thermal vacuum readiness from <b>64% to 95%</b>, replacing about 12 parts on each end-effector.</li>
-                  <li>Fabricated a metal electronics enclosure and debugged motor-driven telescoping rods, isolating a limit-switch interference.</li>
+                  <li><b>Metal electronics enclosures (×2)</b> — fabricated and fitted: filed the edges and lid so it snapped in and sat flush, opened up the lid holes to match the base, and swapped the screws mounting it to the metal center hub.</li>
+                  <li><b>Center gear box / hub (×2)</b> — replaced internal components with metal, re-tapped and resoldered the limit switch components, straightened a bent center rod, and turned holes into slots so the electronics box screws would fit.</li>
+                  <li><b>Motor and clamp assemblies (×4)</b> — all printed parts swapped for metal, screws shortened from M2.5×8 to M2.5×6, and specific clamp holes re-tapped M3.</li>
+                  <li><b>Rivet gun plates (×4)</b> — metal camera mounts, with M4 helicoils installed in the base plate to adapt to the smaller hole size on the new mounts.</li>
+                  <li>Debugged motor-driven telescoping rods where only one side extended — traced it to that side sitting too close to the end and catching on the limit switch.</li>
                 </ul>
+                <p>Roughly 12 parts replaced per end-effector, improving thermal vacuum readiness from <b>64% to 95%</b>.</p>
               </div>
 
               <div class="proj">
@@ -284,11 +290,20 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
                   <li>Modeled and visualized assembly configurations and approaches in <b>Creo</b> and <b>Blender</b>, storyboarding each insertion step frame by frame.</li>
                   <li>Mapped the design space on three axes — jig location (internal core / external cradle / hybrid), panels per insertion, and degrees of freedom — then compared four concepts against it: petal-fold turntable, horizontal rotisserie axle, internal retractable jack, and external nest on a turntable.</li>
                   <li>Modeled the jig top with top-panel clamps, side-panel clamps, and panel cutouts. Worked through capture mechanisms including torsion-spring hooks, over-center toggle clamps, two-state spring latches, and weight-actuated gates.</li>
-                  <li>Specified one-way-only joints with chamfered lead-ins so a misaligned panel won't insert at all instead of jamming partway.</li>
+                  <li>Co-designed the panel joint with the intern designing the panels — proposed <b>male/female joints</b> over the node-centered snowflake joints, with lead-in slots so alignment clearance and error margins were larger during assembly.</li>
+                  <li>Pushed for joints that only go together one way. A panel that fails to insert is recoverable; one that inserts wrong is not.</li>
                 </ul>
-                <h4>Testing</h4>
+                <h4>Chosen approach and insertion order</h4>
+                <p>Narrowed to <b>upside-down construction</b> — the UR3e sits at the center base and builds top-down, pressing each panel into the jig, with a retractable clamp mechanism releasing the finished voxel. It keeps the robot from having to extend or move far, and the voxel comes out cleanly once complete.</p>
                 <ul>
-                  <li>Mounted a built voxel on a stand, cut cardboard-and-Velcro panel mockups, and hand-jogged the UR3e through the planned insertion.</li>
+                  <li><b>Sequential insertion</b> — top plate, then side plates one at a time around the voxel, then the bottom. Each panel braces the next, the robot motion is identical for every side panel, and the jig stays simple. Downside is that errors stack as you go around the perimeter, and the slide-up motion causes joint connection problems.</li>
+                  <li><b>Mirrored insertion</b> — top plate, then two mirrored side plates from below, then the last two pressed in flat from the side, then the bottom. Four points of contact on the final panels and less jig complexity, but it needs two different insertion motions and pushes the difficulty into the clamping mechanism.</li>
+                  <li>Proposed a latch and two-state spring clamp as the primary mechanism: the strut presses the mechanism down and the latch closes over it, so the robot does not need extra attachments on the panels.</li>
+                </ul>
+
+                <h4>Prototype testing</h4>
+                <ul>
+                  <li>Mounted a completed voxel to a stand, used cardboard cutouts with Velcro as panel prototypes, and manipulated the UR3e through the planned insertion.</li>
                   <li>Found unreachable poses inside the 500&nbsp;mm working envelope. The arm takes its own path unless waypoints are set explicitly.</li>
                   <li>Panels collided with the arm body — the end effector needed more standoff, and jig height had to sit in a narrow band, high enough that the arm isn't folded on itself and low enough to stay in reach.</li>
                 </ul>
@@ -324,7 +339,7 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
             <div>
               <div class="proj">
                 <h5>Propulsion characterization</h5>
-                <p>The team was doing one-off drone builds with no shared way to compare propulsion options. I built and wired up a thrust stand and wrote the test protocol, then analyzed efficiency, load response, and performance across <b>6 motor and propeller configurations</b>.</p>
+                <p>My work was aimed at moving the team from isolated one-off drone builds toward a repeatable, data-driven testing and assembly setup. The team needed a proper testing space to find the optimal propulsion configuration for 5- and 10-inch builds, so I built and wired the thrust stand and wrote the protocol, then analyzed efficiency, load response, and performance across <b>6 motor and propeller configurations</b>.</p>
                 <h4>Build</h4>
                 <ul>
                   <li>Spliced and heat-shrunk motor leads; soldered ESC and header pins into the flight controller.</li>
@@ -340,10 +355,11 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
               </div>
 
               <div class="proj">
-                <h5>Power distribution validation</h5>
+                <h5>Fault isolation and power distribution</h5>
                 <ul>
-                  <li>Structured evaluation and fault isolation of electromechanical assemblies to validate power distribution subsystems.</li>
-                  <li>Traced faults across wiring, connectors, and power paths, preparing <b>9 five-inch drones</b> for a training course.</li>
+                  <li>Structured evaluation and fault isolation of electromechanical assemblies to validate power distribution subsystems, tracing faults across wiring, connectors, and power paths. Prepared <b>9 five-inch drones</b> for a training course.</li>
+                  <li><b>Short circuit in a drone</b> — probed consistently with a multimeter, soldering and desoldering step by step through the power path. Fixed after replacing the fourth and final ESC.</li>
+                  <li><b>Bad readings on the thrust stand</b> — RPM sensing was off, so I moved the motor closer to the optical sensor and turned the enclosure lights off. Force sensing was still off, so I tried a white marker, then bright tape, then a 3D-printed motor cover. The cover fell off mid-test. Optical tape was what finally worked.</li>
                 </ul>
               </div>
 
@@ -351,7 +367,8 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
                 <h5>Test jigs and fixtures</h5>
                 <ul>
                   <li>Designed and fabricated custom jigs and fixtures for repeatable electronics assembly and validation.</li>
-                  <li><b>Screw sorter and tool holder</b> — the team was using a downloaded model with no inlay for their 25&nbsp;mm hardware, and it was too thin to hold up on the bench. Reverse-engineered it in <b>SolidWorks</b> and rebuilt it around the actual kits and workbench, iterating through several prints.</li>
+                  <li><b>Screw sorter</b> — the team was using someone else's design that had no inlay for their 25&nbsp;mm hardware and was too thin for the job. Reverse-engineered the parts in <b>SolidWorks</b> to build a custom sorter around the specific SIG workbenches and kits, iterating through several prints.</li>
+                <li><b>Tool holder</b> — sized to the tools actually in use. Went through their toolset with the technicians on the team to get input on the features they wanted and settle on the layout.</li>
                   <li><b>Electronics enclosure</b> — modeled swept openings for antenna wire routing so cables exit without sharp bends. Pulled in CAD models of the real boards to check clearances before printing.</li>
                 </ul>
               </div>
@@ -470,17 +487,22 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
         <div class="body" id="e5" hidden>
           <div class="body-inner">
             <div>
+              <h4>The device</h4>
+              <p>A soft wireless mechano-acoustic sensor worn at the suprasternal notch, where vibrations from the heart, lungs, and vocal cords converge. Serpentine interconnects and a silicone outer layer let rigid PCBs flex with the skin, which is what keeps signal quality usable during movement.</p>
+
               <h4>What I did</h4>
               <ul>
-                <li>Assembled and reworked sensor hardware for a flexible, skin-mounted mechano-acoustic sensor, working under a microscope.</li>
-                <li>Soldered fine-pitch components on flexible substrates.</li>
-                <li>Integrated a <b>triaxial accelerometer sampling at 1600 Hz</b> for continuous signal capture.</li>
+                <li>Assembled and reworked sensor hardware under a microscope — removing, replacing, and resoldering fine-pitch components on the flexible board.</li>
+                <li>Integrated a <b>triaxial accelerometer at 1600 Hz sampling, 2g range</b> for continuous capture. It picks up carotid pulses and surface vibrations with far less noise than a microphone.</li>
+                <li>Wired the battery to the correct channels, soldered in the power switch, and verified the Bluetooth Low Energy connection on each assembled unit.</li>
+                <li>Cast the silicone encapsulation — mixed equal parts by hand, vacuum degassed to pull out bubbles, then ran it through the mixing machine.</li>
+                <li>Read the background literature on mechano-acoustic sensing and worked through Altium to follow the board design.</li>
               </ul>
             </div>
             <aside>
               <dl class="mini">
                 <div><dt>Focus</dt><dd>Precision assembly · Sensors</dd></div>
-                <div><dt>Tools</dt><dd>Micro-soldering, microscope rework</dd></div>
+                <div><dt>Tools</dt><dd>Micro-soldering, microscope rework, Altium, silicone casting</dd></div>
                 <div><dt>Role</dt><dd>Engineering intern</dd></div>
               </dl>
             </aside>
@@ -494,19 +516,37 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
           <span class="row-t">
             <h3>Chilkoti Lab, Duke University</h3>
             <p class="org-line">Software Engineering Intern · Durham, NC · Apr — Jun 2025</p>
-            <p class="blurb">Python image analysis pipeline for virus assays.</p>
+            <p class="blurb">Tuning and extending the lab’s Python slide-analysis codebase, and validating its output against GenePix.</p>
           </span>
           <span class="toggle"><span class="x"></span>Open</span>
         </button>
         <div class="body" id="e6" hidden>
           <div class="body-inner">
             <div>
-              <h4>What I did</h4>
-              <p>Built an image analysis pipeline for virus assay readouts, supporting development of rapid diagnostic tests for rural areas.</p>
+              <h4>Context</h4>
+              <p>The lab had an existing Python codebase, SlideReader, for pulling quantitative fluorescent signal out of assay slide images. I worked on that codebase — tuning it, extending it, and validating its output against the commercial tool the lab was using.</p>
+
+              <h4>Getting into the codebase</h4>
               <ul>
-                <li>Automated fluorescent signal extraction — spot detection and clustering, per-spot foreground and background measurement, cluster-level averaged signal.</li>
-                <li>Exported results to Excel and wrote scripts to analyze the datapoints and generate plots.</li>
-                <li>Wrote a side-by-side view rendering each block twice, my pipeline against <b>GenePix</b> reference output, showing cluster ID, average signal, per-spot values, and detected spot positions on the image.</li>
+                <li>Forked the repo, set up a dedicated virtual environment, and rewrote the requirements file after several dependencies failed to install. Added a <code>.gitignore</code> for the venv and worked around push failures from oversized notebook outputs.</li>
+                <li>Read through the analysis notebook block by block and wrote documentation for what each stage does and what every parameter controls.</li>
+              </ul>
+
+              <h4>Tuning the detection pipeline</h4>
+              <ul>
+                <li>Tuned image preprocessing — <code>blur_kernel_size</code> and <code>contrast_thr</code> — against how clean or noisy each scan was, since both change how many regions get picked up as spots.</li>
+                <li>Tuned Canny edge thresholds and the Hough circle parameters (<code>dp</code>, <code>param1</code>, <code>param2</code>, min and max radius) to control which spots were detected.</li>
+                <li>Tuned clustering (<code>eps</code>, <code>min_samples</code>) to group detected spots into the correct blocks.</li>
+                <li>Hand-corrected the cluster template row by row where automatic detection got it wrong, then reused the corrected template across the remaining regions.</li>
+                <li>Analyzed three slide images end to end and exported the cluster data to Excel.</li>
+              </ul>
+
+              <h4>What I added</h4>
+              <ul>
+                <li>Wrote a side-by-side validation view that renders each block twice — pipeline output against <b>GenePix</b> reference output — showing cluster ID, cluster average F&minus;B signal, per-spot foreground and background, and the detected circle drawn on the image itself.</li>
+                <li>Reimplemented the foreground and background radii used internally by the cluster measurement function (foreground = detected spot radius + 2&nbsp;px, background = 4× that) so the overlays could be drawn on the full image without needing block-level masks.</li>
+                <li>Added outlier identification so spots excluded from the cluster average are visible in the plot, and extended the full-report plotting option down to the cluster level.</li>
+                <li>Submitted the plotting work as a merge request to the lab's repo.</li>
               </ul>
             </div>
             <aside>
@@ -516,7 +556,7 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
               </figure>
               <dl class="mini">
                 <div><dt>Focus</dt><dd>Software · Image processing</dd></div>
-                <div><dt>Tools</dt><dd>Python, NumPy, Excel export</dd></div>
+                <div><dt>Tools</dt><dd>Python, NumPy, OpenCV, Jupyter, Git</dd></div>
                 <div><dt>Role</dt><dd>Engineering intern</dd></div>
               </dl>
             </aside>
@@ -786,7 +826,7 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
       <div class="act">
         <h3>Ethics &amp; Philosophy of AI</h3>
         <p class="meta">University of Oxford, New College</p>
-        <p>Coursework at New College on the ethics and philosophy of artificial intelligence, through the Angier B. Duke summer program. Weekly tutorials and high table dinners debating and discussing relevant topics. </p>
+        <p>Coursework at New College on the ethics and philosophy of artificial intelligence, through the Angier B. Duke summer program. Weekly tutorials and high table dinners debating and discussing relevant topics.</p>
         <div class="act-imgs">
           <figure><img src="images/oxford_class.jpg" alt="Class at New College, University of Oxford"></figure>
         </div>
@@ -795,7 +835,7 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
       <div class="act">
         <h3>Catalyst</h3>
         <p class="meta">Duke's pre-professional technology organization · <a href="https://www.dukecatalyst.com/" target="_blank" rel="noopener">dukecatalyst.com</a></p>
-        <p>Recruiting prep, technical skill-building, and alumni connections for students going into tech, also where I met some of my closest friends. </p>
+        <p>Recruiting prep, technical skill-building, and alumni connections for students going into tech, also where I met some of my closest friends.</p>
         <div class="act-imgs">
           <figure><img src="images/catalyst_family.png" alt="Catalyst family group"></figure>
           <figure><img src="images/catalyst_friends.jpg" alt="Catalyst members at an event"></figure>
