@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+._*
+
+# Editor
+.vscode/
+*.swp
+
+# Local notes and scripts, not part of the site
+DEPLOY.md
+OFFLINE-SETUP.md
+rename-images.sh
+
+# Anything not cleared to publish
+/drafts/
+/uncleared/
+/photos-raw/
+
+# Source CAD files
+*.sldprt
+*.sldasm
+*.step
+*.stp
+*.f3d
+*.psd
