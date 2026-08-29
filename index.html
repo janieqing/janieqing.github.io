@@ -28,8 +28,17 @@ a{color:inherit}
 
 /* hero */
 .hero{padding:26px 0 0}
+.namerow{display:flex;gap:22px;align-items:flex-start;margin:clamp(22px,3vw,32px) 0 0}
+.namerow .txt{min-width:0;flex:1 1 auto}
+.headshot{flex:0 0 auto;width:120px;border:1px solid var(--rule);background:var(--wash)}
+.headshot img{width:100%;height:150px;object-fit:cover;display:block}
+@media (max-width:640px){
+  .namerow{flex-direction:column-reverse;gap:16px}
+  .headshot{width:104px}
+  .headshot img{height:130px}
+}
 .eyebrow{font-size:13.5px;color:var(--muted);margin:0;border-bottom:1px solid var(--ink);padding-bottom:10px}
-.hero h1{font-weight:700;font-size:clamp(34px,6vw,54px);line-height:1.08;letter-spacing:-.02em;margin:clamp(22px,3vw,32px) 0 0}
+.hero h1{font-weight:700;font-size:clamp(34px,6vw,54px);line-height:1.08;letter-spacing:-.02em;margin:0}
 .thesis{font-size:clamp(16px,2vw,19px);line-height:1.5;max-width:56ch;margin:16px 0 0;color:var(--ink-2)}
 .thesis b{color:var(--ink);font-weight:600}
 .titleblock{margin:30px 0 0;display:grid;grid-template-columns:1fr 1fr;column-gap:44px;border-top:1px solid var(--ink)}
@@ -44,7 +53,7 @@ a{color:inherit}
 .tabs::-webkit-scrollbar{display:none}
 .tab{appearance:none;background:transparent;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;
   font-size:14.5px;color:var(--muted);
-  padding:13px 16px 11px;cursor:pointer;white-space:nowrap;transition:.15s}
+  padding:13px 16px 11px;cursor:pointer;white-space:nowrap}
 .tab:first-child{padding-left:0}
 .tab:hover{color:var(--ink)}
 .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink);font-weight:600}
@@ -62,8 +71,8 @@ section{padding:clamp(40px,6vw,64px) 0 0}
 .sub{color:var(--ink-2);max-width:72ch;margin:14px 0 0;font-size:15px}
 
 /* note */
-.note-box{margin:18px 0 0;background:var(--wash);border-left:3px solid var(--link);padding:14px 18px}
-.note-box p{margin:0;font-size:14px;color:var(--ink-2);max-width:76ch;line-height:1.6}
+.note-box{margin:16px 0 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:11px 0}
+.note-box p{margin:0;font-size:14px;color:var(--muted);max-width:76ch;line-height:1.6}
 .note-box a{color:var(--link);font-weight:500}
 
 /* expandable rows */
@@ -73,12 +82,12 @@ section{padding:clamp(40px,6vw,64px) 0 0}
   display:grid;grid-template-columns:1fr auto;gap:18px;align-items:start;padding:16px 0;font:inherit}
 .row-btn:hover h3{color:var(--link)}
 .row-t{min-width:0}
-.row-t h3{font-weight:600;font-size:clamp(16.5px,2vw,19px);line-height:1.3;margin:0;letter-spacing:-.005em;transition:color .15s}
+.row-t h3{font-weight:600;font-size:clamp(16.5px,2vw,19px);line-height:1.3;margin:0;letter-spacing:-.005em}
 .row-t .org-line{font-size:13.5px;color:var(--muted);margin:5px 0 0}
 .row-t .blurb{font-size:14.5px;color:var(--ink-2);margin:8px 0 0;max-width:72ch}
 .toggle{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px;white-space:nowrap;padding-top:4px}
 .toggle .x{display:inline-block;width:18px;height:18px;border:1px solid var(--rule);position:relative;flex:0 0 auto}
-.toggle .x::before,.toggle .x::after{content:"";position:absolute;background:var(--ink);transition:transform .2s}
+.toggle .x::before,.toggle .x::after{content:"";position:absolute;background:var(--ink)}
 .toggle .x::before{left:4px;right:4px;top:50%;height:1px;margin-top:-.5px}
 .toggle .x::after{top:4px;bottom:4px;left:50%;width:1px;margin-left:-.5px}
 .row-btn[aria-expanded="true"] .x::after{transform:rotate(90deg)}
@@ -139,6 +148,82 @@ section{padding:clamp(40px,6vw,64px) 0 0}
 .act-imgs img{width:100%;height:190px;object-fit:cover;display:block}
 @media (max-width:560px){.act-imgs{grid-template-columns:1fr}.act-imgs img{height:auto}}
 
+/* print / PDF export */
+@media print{
+  @page{margin:11mm 10mm}
+  html{scroll-behavior:auto}
+  body{font-size:9pt;line-height:1.35;color:#000;background:#fff}
+  .wrap{max-width:none;padding:0}
+  a{color:#000;text-decoration:none;border-bottom:0}
+
+  /* force every collapsed section open */
+  .panel[hidden],.body[hidden]{display:block !important}
+  .panel,.body{display:block !important}
+
+  /* drop interactive chrome */
+  .tabs,.toggle,.note-box{display:none !important}
+  .row-btn{padding:7px 0 2px;display:block;cursor:default}
+
+  /* print-only header */
+  .print-head{display:block !important;margin:0 0 14px;padding-bottom:8px;border-bottom:1.5pt solid #000}
+  .print-head span{display:block;font-size:9pt;color:#333}
+
+  /* keep blocks whole across pages */
+  .row,.act,.proj,figure,.mini{page-break-inside:avoid;break-inside:avoid}
+  h1,h2,h3,h4,h5{page-break-after:avoid;break-after:avoid}
+  section{page-break-before:auto;padding-top:12px}
+  #sec-beyond{page-break-before:always}
+
+  /* tighten type */
+  .hero{padding:0}
+  .hero h1{font-size:21pt;margin:0}
+  .namerow{gap:14px;margin:4px 0 0}
+  .headshot{width:26mm}
+  .headshot img{height:32mm}
+  .thesis{font-size:9.5pt;margin:5px 0 0}
+  .titleblock{margin:9px 0 0;column-gap:22px}
+  .tb{padding:2.5px 0}
+  .tb dt,.tb dd{font-size:8.5pt}
+  .shead{padding-bottom:6px;margin-bottom:4px}
+  .shead h2{font-size:13pt}
+  .shead p{display:none}
+  .row-t h3{font-size:11pt}
+  .row-t .org-line{font-size:8pt}
+  .row-t .blurb{font-size:8.5pt;margin:3px 0 0}
+  .body h4{font-size:8pt;margin:8px 0 4px;padding-bottom:3px}
+  .body p,.body li{font-size:8.5pt;margin-bottom:3px}
+  .proj{margin-top:8px;padding-left:12px}
+
+  /* two-column body becomes single column, images scaled down */
+  .body-inner{display:block;padding-top:6px}
+  .body-inner aside{margin-top:7px;display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start}
+  .plate{max-width:31%;margin:0}
+  .plate img{max-height:42mm;object-fit:contain}
+  .plate figcaption{font-size:7.5pt;padding:4px 5px}
+  .mini{flex:1 1 100%;margin-top:6px}
+  .mini div{padding:3px 0}
+  .mini dt,.mini dd{font-size:8.5pt}
+  .docs{flex:1 1 100%}
+  .docs a{font-size:9pt;padding:4px 0}
+  .docs a::after{content:" (" attr(href) ")";color:#555;font-size:8pt}
+
+  .acts{margin-top:10px}
+  .act{padding:6px 0}
+  .act h3{font-size:10.5pt}
+  .act p{font-size:8.5pt}
+  .act-imgs{max-width:100%;gap:6px;margin-top:8px}
+  .act-imgs img{height:30mm}
+  .act .meta a::after{content:" (" attr(href) ")";color:#555;font-size:8pt}
+
+  .spec-row{padding:4px 0;grid-template-columns:130px 1fr}
+  .spec-row dt,.spec-row dd{font-size:8.5pt}
+  footer{margin-top:20px;padding:10px 0 0;page-break-inside:avoid}
+  .foot h2{display:none}
+  .links a::after{content:" " attr(href);color:#555}
+  .stamp{font-size:8pt;margin-top:10px}
+}
+.print-head{display:none}
+
 /* footer */
 footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:28px 0 52px}
 .foot{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:flex-end;justify-content:space-between}
@@ -153,12 +238,23 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
 
 <div class="wrap">
 
+  <div class="print-head">
+    <span>Janie Qing &middot; Engineering Portfolio</span>
+    <span>janie.qing@duke.edu &middot; linkedin.com/in/janie-qing</span>
+  </div>
+
   <!-- hero -->
   <header class="hero">
     <p class="eyebrow">Electrical &amp; Computer Engineering + Computer Science · Duke University · Class of 2028</p>
-    <h1>Janie Qing</h1>
-
-    <p class="thesis">Passionate about <b>Hardware Engineering</b>, <b>Electromechanical Systems</b>, <b>Computer Architecture</b>, <b>Embedded Systems</b>, and <b>Control Systems</b>.</p>
+    <div class="namerow">
+      <div class="txt">
+        <h1>Janie Qing</h1>
+        <p class="thesis">Passionate about <b>Hardware Engineering</b>, <b>Electromechanical Systems</b>, <b>Computer Architecture</b>, <b>Embedded Systems</b>, and <b>Control Systems</b>.</p>
+      </div>
+      <figure class="headshot">
+        <img src="images/headshot.jpg" alt="Janie Qing">
+      </figure>
+    </div>
 
     <dl class="titleblock">
       <div class="tb"><dt>Program</dt><dd>B.S.E. Electrical &amp; Computer Engineering + B.S. Computer Science</dd></div>
@@ -261,7 +357,7 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
                   <li>Mapped the design space on three axes: jig location (internal core / external cradle / hybrid), panels per insertion, and degrees of freedom. Compared four concepts against it: petal-fold turntable, horizontal rotisserie axle, internal retractable jack, and external nest on a turntable.</li>
                   <li>Modeled the jig top with top-panel clamps, side-panel clamps, and panel cutouts. Worked through capture mechanisms including torsion-spring hooks, over-center toggle clamps, two-state spring latches, and weight-actuated gates.</li>
                   <li>Co-designed the panel joint with the intern designing the panels, and proposed <b>male/female joints</b> over the node-centered snowflake joints, with lead-in slots so alignment clearance and error margins were larger during assembly.</li>
-                  <li>Pushed for joints that only go together one way. A panel that fails to insert is recoverable; one that inserts wrong is not.</li>
+                  <li>Pushed for joints that only go together one way, so a misaligned panel stops rather than seating incorrectly and needing to be cut back out.</li>
                 </ul>
                 <h4>Chosen approach and insertion order</h4>
                 <p>Narrowed to <b>upside-down construction:</b> the UR3e sits at the center base and builds top-down, pressing each panel into the jig, with a retractable clamp mechanism releasing the finished voxel. It keeps the robot from having to extend or move far, and the voxel comes out cleanly once complete.</p>
@@ -586,7 +682,7 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
 
               <h4>Testing</h4>
               <ul>
-                <li>Debugged in Logisim rather than guessing. Loaded the imem and dmem images, stepped the clock to the cycle before a failure, then traced the bad value back until it reached a subcircuit producing wrong output from right inputs.</li>
+                <li>Debugged in Logisim by loading the imem and dmem images, stepped the clock to the cycle before a failure, then traced the bad value back until it reached a subcircuit producing wrong output from right inputs.</li>
                 <li>Wrote assembly test programs and traced them against the reference simulator in verbose mode to know what each register should hold at each step.</li>
                 <li>Built up incrementally: ALU operations first, then memory, then branches and jumps.</li>
               </ul>
@@ -653,7 +749,7 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
               <h4>Team response</h4>
               <ul>
                 <li>Summed the team's five scores and branched on the result: a light show below 5, a dance at 5 or above, and a song if every bot returned the same value.</li>
-                <li>Light show and dance had to stay synchronized across all five bots to within <b>0.25–0.5&nbsp;s</b>, and the song to within a note, which made XBee message timing and the shared start trigger the hard part rather than the individual routines.</li>
+                <li>Light show and dance had to stay synchronized across all five bots to within <b>0.25–0.5&nbsp;s</b>, and the song to within a note, which made XBee message timing and the shared start trigger the hard part of the assignment.</li>
               </ul>
             </div>
             <aside>
@@ -801,9 +897,6 @@ footer{margin-top:clamp(46px,7vw,74px);border-top:2px solid var(--ink);padding:2
         <h3>Angier B. Duke Scholarship</h3>
         <p class="meta">Full-ride merit scholarship · 2024–2028 · <a href="https://ousf.duke.edu/profile/janie-qing/" target="_blank" rel="noopener">Scholar profile</a></p>
         <p>Duke's flagship merit scholarship, selected through a finalist interview process. Covers full tuition and includes a funded summer study experience at the University of Oxford.</p>
-        <div class="act-imgs">
-          <figure><img src="images/ab_scholar_photo.jpg" alt="Angier B. Duke Scholarship Photo"></figure>
-        </div>div>
       </div>
 
       <div class="act">
